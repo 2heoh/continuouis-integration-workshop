@@ -277,10 +277,13 @@ a:focus-visible {
 
 .sources-list .source-book {
   list-style-position: outside;
+  margin: 14px 0;
+}
+
+.sources-list .source-book__row {
   display: flex;
   gap: var(--space-3);
   align-items: flex-start;
-  margin: 14px 0;
 }
 
 .source-book__cover {
@@ -294,7 +297,7 @@ a:focus-visible {
   background: var(--surface);
 }
 
-.sources-list .source-book > span {
+.sources-list .source-book__row > span {
   min-width: 0;
 }
 
