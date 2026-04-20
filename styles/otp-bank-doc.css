@@ -275,6 +275,37 @@ a:focus-visible {
   margin: 10px 0;
 }
 
+.sources-list .source-book {
+  list-style-position: outside;
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  margin: 14px 0;
+}
+
+.source-book__cover {
+  width: 52px;
+  height: 78px;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  background: var(--surface);
+}
+
+.sources-list .source-book > span {
+  min-width: 0;
+}
+
+.sources-list .source-book a {
+  word-break: break-word;
+}
+
+.sources-list .source-book cite {
+  font-style: italic;
+}
+
 .content li ul {
   margin: var(--space-2) 0 var(--space-3);
 }
