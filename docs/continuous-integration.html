@@ -195,6 +195,7 @@
               <ul>
                 <li>Ветки создаются для ревью и проверки сборки, но живут минимально возможное время.</li>
                 <li>Цель — как можно быстрее вернуть изменения в общую mainline, не накапливая риск интеграции.</li>
+                <li><strong>Источник</strong>: <a href="https://nvie.com/posts/a-successful-git-branching-model/">Vincent Driessen — A successful Git branching model</a>.</li>
               </ul>
             </li>
             <li>
@@ -207,12 +208,16 @@
                 <li><strong>Практика</strong>: делайте маленькие инкременты, которые безопасно мержить в trunk, даже если UI/эндпоинты ещё не готовы — флаг закрывает «незавершённое» от пользователей.</li>
                 <li><strong>Важно</strong>: флаг — это временный механизм. Нужны правила жизненного цикла: дата удаления, владелец, и регулярная чистка, иначе флаги накапливаются и усложняют код.</li>
                 <li><strong>Риски</strong>: много условий в коде («if‑ад»), сложнее тестировать комбинации. Минимизируйте число активных флагов и избегайте вложенных/пересекающихся условий.</li>
+                <li><strong>Материал</strong>: <a href="https://trunkbaseddevelopment.com/feature-flags/">Trunk-Based Development — Feature flags</a>.</li>
               </ul>
             </li>
             <li>
               <strong>Branch by abstraction</strong>
               <ul>
-                <li>Техника для больших рефакторингов/замен компонентов без длительной изоляции изменений.</li>
+                <li><strong>Что это</strong>: способ делать крупные замены (БД/сервис/библиотека/модуль) без долгоживущей ветки — через введение промежуточной абстракции.</li>
+                <li><strong>Как выглядит</strong>: добавляете интерфейс/фасад, подключаете новую реализацию параллельно старой, затем <strong>постепенно</strong> переводите вызовы/потоки на новую реализацию и удаляете старую.</li>
+                <li><strong>Зачем</strong>: позволяет продолжать часто интегрироваться в mainline, не блокируя команду «большим мержем» в конце.</li>
+                <li><strong>Материал</strong>: <a href="https://trunkbaseddevelopment.com/branch-by-abstraction/">Trunk-Based Development — Branch by Abstraction</a> (есть также перевод: <a href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">trunkbaseddevelopment.ru</a>).</li>
               </ul>
             </li>
             <li>
@@ -221,6 +226,7 @@
                 <li>Если mainline «красная», команда <strong>останавливает поток</strong>: новые интеграции откладываются, пока сборка не станет «зелёной».</li>
                 <li>Приоритет №1 — <strong>сразу исправить или откатить</strong> изменения, которые сломали сборку.</li>
                 <li>Практически это работает, когда есть понятные правила: кто берёт инцидент, как быстро принимается решение об откате и что считается «достаточно зелёным» (обычно — commit build).</li>
+                <li><strong>Статья</strong>: <a href="https://habr.com/ru/companies/dododev/articles/460191/">«Stop the line или прокачай свой pipeline, йоу» (Dodo Engineering, Хабр)</a>.</li>
               </ul>
             </li>
             <li>
@@ -228,6 +234,7 @@
               <ul>
                 <li><strong>Commit build</strong> должен быть быстрым и достаточным, чтобы mainline оставалась «безопасной для разработки».</li>
                 <li>Более долгие проверки (интеграционные, e2e, безопасность, производительность) выносите в последующие стадии конвейера.</li>
+                <li><strong>Материал</strong>: <a href="https://martinfowler.com/bliki/DeploymentPipeline.html">Martin Fowler — Deployment Pipeline</a>.</li>
               </ul>
             </li>
           </ul>

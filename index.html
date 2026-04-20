@@ -153,11 +153,11 @@
 
       <h2>Вспомогательные практики</h2>
       <ul>
-        <li><strong>Короткоживущие ветки/PR</strong>: используйте для ревью и проверки, но интегрируйте обратно как можно быстрее.</li>
-        <li><strong>Feature flags</strong>: переключатели поведения, которые позволяют держать код фичи в mainline, но включать её через конфигурацию (по умолчанию выключено, canary/процент/роль). Флаги должны быть временными — важно регулярно удалять их, чтобы не усложнять код.</li>
-        <li><strong>Branch by abstraction</strong>: делайте большие замены компонентов через промежуточный слой, не уходя в долгие ветки.</li>
-        <li><strong>Stop the line</strong>: если mainline «красная», новые интеграции откладываются — сначала <strong>исправить или откатить</strong> сломанную сборку.</li>
-        <li><strong>Разделение проверок</strong>: быстрый commit build держит mainline «безопасной для разработки», долгие проверки — отдельными стадиями.</li>
+        <li><strong>Короткоживущие ветки/PR</strong>: используйте для ревью и проверки, но интегрируйте обратно как можно быстрее. Источник: <a href="https://nvie.com/posts/a-successful-git-branching-model/">nvie.com</a>.</li>
+        <li><strong>Feature flags</strong>: переключатели поведения, которые позволяют держать код фичи в mainline, но включать её через конфигурацию (по умолчанию выключено, canary/процент/роль). Флаги должны быть временными — важно регулярно удалять их, чтобы не усложнять код. Подробнее: <a href="https://trunkbaseddevelopment.com/feature-flags/">tbd.com</a>.</li>
+        <li><strong>Branch by abstraction</strong>: делайте большие замены компонентов через промежуточный слой (абстракцию), постепенно переключаясь на новую реализацию. Подробнее: <a href="https://trunkbaseddevelopment.com/branch-by-abstraction/">tbd.com</a>.</li>
+        <li><strong>Stop the line</strong>: если mainline «красная», новые интеграции откладываются — сначала <strong>исправить или откатить</strong> сломанную сборку. Статья: <a href="https://habr.com/ru/companies/dododev/articles/460191/">Dodo Engineering (Хабр)</a>.</li>
+        <li><strong>Разделение проверок</strong>: быстрый commit build держит mainline «безопасной для разработки», долгие проверки — отдельными стадиями. Подробнее: <a href="https://martinfowler.com/bliki/DeploymentPipeline.html">Deployment Pipeline</a>.</li>
       </ul>
 
       <h2>Ежедневный цикл разработчика в CI</h2>
