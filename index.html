@@ -24,13 +24,40 @@
       <p class="lead">Непрерывная интеграция (Continuous Integration, <strong>CI</strong>) — это практика разработки ПО, при которой участники команды <strong>часто интегрируют</strong> свои изменения в общую основную ветку, а <strong>каждая интеграция сразу проверяется автоматической сборкой и тестами</strong>, чтобы как можно раньше находить ошибки интеграции и не накапливать «интеграционный ад».</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="docs/continuous-integration.html">Полная версия с оглавлением</a>
-        <a class="btn btn--secondary" href="#istochniki">Источники</a>
+        <a class="btn btn--secondary" href="#korotko">Коротко</a>
       </div>
     </div>
   </section>
 
   <main class="page-body">
     <div class="content">
+      <h2 id="korotko">Коротко</h2>
+      <p><strong>CI = частые маленькие интеграции в одну основную ветку + самопроверяемая автоматическая сборка после каждой интеграции + немедленная починка сломанной сборки.</strong></p>
+
+      <h2 id="cikl">Ежедневный цикл разработчика в CI</h2>
+      <ol>
+        <li>Обновиться до актуальной основной ветки.</li>
+        <li>Сделать небольшое изменение (включая обновление/добавление тестов).</li>
+        <li>Запустить сборку и тесты локально.</li>
+        <li>Перед коммитом ещё раз обновиться, разрешить конфликты, снова прогнать сборку/тесты.</li>
+        <li>Закоммитить в основную ветку.</li>
+        <li>Убедиться, что интеграционная сборка основной ветки прошла; если нет — <strong>сразу исправить или откатить</strong>.</li>
+      </ol>
+
+      <h2 id="dogovor">Базовая договоренность команды</h2>
+      <p>CI начинается не с инструмента, а с договорённости:</p>
+      <blockquote class="callout">
+        <p><strong>Код в репозитории всегда должен успешно собираться и проходить тесты.</strong></p>
+      </blockquote>
+      <p>Если этот принцип не является нормой, ни CI‑сервер, ни «ночные сборки» не дадут эффекта.</p>
+      <p>Практичный способ “проверить, что у вас действительно CI, а не CI‑театр” — быстрый тест (в пересказе Фаулера):</p>
+      <ul>
+        <li>каждый в команде коммитит/пушит в общую mainline <strong>минимум ежедневно</strong>;</li>
+        <li>каждый такой коммит запускает <strong>автоматическую сборку и тесты</strong>;</li>
+        <li>при падении сборки она обычно возвращается в “зелёное” состояние <strong>в течение ~10 минут</strong> (или выполняется откат до последней зелёной).</li>
+      </ul>
+      <p>Если проверки выполняются только на feature‑ветках, а интеграции в общую mainline редкие, команда рискует попасть в «CI‑театр»: инструмент есть, а интеграционные проблемы всё равно копятся и проявляются поздно.</p>
+
       <p class="section-label" id="benefits">Почему это важно</p>
       <div class="card-grid" aria-label="Ключевые выгоды CI">
         <article class="card">
@@ -50,156 +77,6 @@
           <p class="card__text">«То, что в репозитории, собирается и проходит тесты» — реальное обещание.</p>
         </article>
       </div>
-
-      <h2 id="istochniki">Источники</h2>
-      <ol class="sources-list">
-        <li>Перевод статьи Мартина Фаулера на Scrum.ru: <a href="https://scrum.ru/tpost/f5ldmg18n1-neprerivnaya-integratsiya-chast-1">scrum.ru</a></li>
-        <li>James Shore: <a href="https://www.jamesshore.com/v2/blog/2006/continuous-integration-on-a-dollar-a-day">Continuous Integration on a Dollar a Day</a> — на русском: <a href="https://habr.com/ru/articles/151854/">«Непрерывная интеграция за доллар в день» (Хабр)</a></li>
-        <li>Martin Fowler — “Continuous Integration Certification”: <a href="https://martinfowler.com/bliki/ContinuousIntegrationCertification.html">martinfowler.com</a></li>
-        <li>Trunk-Based Development: <a href="https://trunkbaseddevelopment.com/">trunkbaseddevelopment.com</a> — на русском: <a href="https://trunkbaseddevelopment.ru/">trunkbaseddevelopment.ru</a></li>
-        <li class="source-book">
-          <div class="source-book__row">
-            <img class="source-book__cover" loading="lazy" alt="Обложка: Extreme Programming Explained" src="https://covers.openlibrary.org/b/isbn/0321278658-M.jpg">
-            <span><cite>Extreme Programming Explained</cite> — Kent Beck (<a href="https://www.pearson.com/en-us/subject-catalog/p/extreme-programming-explained-embrace-change/P200000000118/9780134051994">Pearson</a> — на русском: <a href="https://rsdn.org/article/395">«Экстремальное программирование»</a>)</span>
-          </div>
-        </li>
-        <li class="source-book">
-          <div class="source-book__row">
-            <img class="source-book__cover" loading="lazy" alt="Обложка: Continuous Integration" src="https://covers.openlibrary.org/b/isbn/0321336380-M.jpg">
-            <span><cite>Continuous Integration: Improving Software Quality and Reducing Risk</cite> — Paul M. Duvall, Steve Matyas, Andrew Glover (<a href="https://martinfowler.com/books/duvall.html">MartinFowler.com (Books)</a> — на русском: <a href="https://www.labirint.ru/books/539486/">Лабиринт</a>)</span>
-          </div>
-        </li>
-        <li class="source-book">
-          <div class="source-book__row">
-            <img class="source-book__cover" loading="lazy" alt="Обложка: Continuous Delivery" src="https://covers.openlibrary.org/b/isbn/0321601912-M.jpg">
-            <span><cite>Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation</cite> — Jez Humble, David Farley (<a href="https://www.informit.com/store/continuous-delivery-reliable-software-releases-through-build-9780321601919">Addison-Wesley / InformIT</a> — на русском: <a href="https://www.williamspublishing.com/Books/978-5-8459-1739-3.html">Вильямс</a>)</span>
-          </div>
-        </li>
-        <li>Видео: <a href="https://www.youtube.com/watch?v=1er2cjUq1UI">“What is Continuous Integration?”</a></li>
-        <li>Видео: <a href="https://www.youtube.com/watch?v=Xl62gQpAl1w">“Top 10 Rules For Continuous Integration”</a></li>
-      </ol>
-
-      <h2>Базовая договоренность команды</h2>
-      <p>CI начинается не с инструмента, а с договорённости:</p>
-      <blockquote class="callout">
-        <p><strong>Код в репозитории всегда должен успешно собираться и проходить тесты.</strong></p>
-      </blockquote>
-      <p>Если этот принцип не является нормой, ни CI‑сервер, ни «ночные сборки» не дадут эффекта.</p>
-      <p>Практичный способ “проверить, что у вас действительно CI, а не CI‑театр” — быстрый тест (в пересказе Фаулера):</p>
-      <ul>
-        <li>каждый в команде коммитит/пушит в общую mainline <strong>минимум ежедневно</strong>;</li>
-        <li>каждый такой коммит запускает <strong>автоматическую сборку и тесты</strong>;</li>
-        <li>при падении сборки она обычно возвращается в “зелёное” состояние <strong>в течение ~10 минут</strong> (или выполняется откат до последней зелёной).</li>
-      </ul>
-      <p>Если проверки выполняются только на feature‑ветках, а интеграции в общую mainline редкие, команда рискует попасть в «CI‑театр»: инструмент есть, а интеграционные проблемы всё равно копятся и проявляются поздно.</p>
-
-      <h2>Ключевые практики CI</h2>
-      <ul>
-        <li>
-          <strong>Единый репозиторий</strong>
-          <ul>
-            <li>В репозитории хранится <strong>всё, что нужно для сборки и запуска</strong>: скрипты сборки, тесты, конфигурация, схемы/миграции БД, зависимости и т. п.</li>
-            <li>Идеал: взять «чистый» компьютер → скачать код → запустить одну команду → получить работающую систему.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Одна основная ветка (mainline)</strong>
-          <ul>
-            <li>Большую часть времени разработка идёт в одной общей ветке; ветвление — минимально и по необходимости.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Автоматизированная сборка “одной командой”</strong>
-          <ul>
-            <li>Сборка должна быть воспроизводимой и запускаться одинаково локально и на интеграционной машине/сервере.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Самопроверяемая сборка</strong>
-          <ul>
-            <li>Сборка включает автоматические тесты.</li>
-            <li>Падение тестов = <strong>падение сборки</strong>.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Частые коммиты небольшими порциями</strong>
-          <ul>
-            <li>Ориентир: минимум <strong>ежедневно</strong>, на практике — <strong>несколько раз в день</strong>.</li>
-            <li>Частые коммиты стимулируют дробить работу на изменения длительностью в несколько часов.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Проверка основной ветки после каждого коммита</strong>
-          <ul>
-            <li>После каждого изменения основная ветка должна пройти сборку/тесты на интеграционной машине/сервере.</li>
-            <li>Сборки «по ночам» — это не CI: они дают слишком поздний сигнал.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Сломанная сборка чинится немедленно</strong>
-          <ul>
-            <li>Когда основная ветка “красная”, приоритет №1 — вернуть её в “зелёное” состояние.</li>
-            <li>Часто самый быстрый путь — откатить последний коммит и разбираться в рабочем окружении.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Быстрая обратная связь</strong>
-          <ul>
-            <li>Сборка+тесты должны быть достаточно быстрыми, чтобы их можно было запускать часто.</li>
-            <li>Ориентир для «commit build» (компиляция + unit‑тесты): <strong>&le; 10 минут</strong> (лучше — <strong>&le; 5</strong>).</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h2>Вспомогательные практики</h2>
-      <ul>
-        <li><strong>Короткоживущие ветки/PR</strong>: используйте для ревью и проверки, но интегрируйте обратно как можно быстрее. Источник: <a href="https://nvie.com/posts/a-successful-git-branching-model/">nvie.com</a>.</li>
-        <li><strong>Feature flags</strong>: переключатели поведения, которые позволяют держать код фичи в mainline, но включать её через конфигурацию (по умолчанию выключено, canary/процент/роль). Флаги должны быть временными — важно регулярно удалять их, чтобы не усложнять код. Подробнее: <a href="https://trunkbaseddevelopment.com/feature-flags/">tbd.com</a>.</li>
-        <li><strong>Branch by abstraction</strong>: делайте большие замены компонентов через промежуточный слой (абстракцию), постепенно переключаясь на новую реализацию. Подробнее: <a href="https://trunkbaseddevelopment.com/branch-by-abstraction/">tbd.com</a>.</li>
-        <li><strong>Stop the line</strong>: если mainline «красная», новые интеграции откладываются — сначала <strong>исправить или откатить</strong> сломанную сборку. Статья: <a href="https://habr.com/ru/companies/dododev/articles/460191/">Dodo Engineering (Хабр)</a>.</li>
-        <li><strong>Разделение проверок</strong>: быстрый commit build держит mainline «безопасной для разработки», долгие проверки — отдельными стадиями. Подробнее: <a href="https://martinfowler.com/bliki/DeploymentPipeline.html">Deployment Pipeline</a>.</li>
-      </ul>
-
-      <h2>Ежедневный цикл разработчика в CI</h2>
-      <ol>
-        <li>Обновиться до актуальной основной ветки.</li>
-        <li>Сделать небольшое изменение (включая обновление/добавление тестов).</li>
-        <li>Запустить сборку и тесты локально.</li>
-        <li>Перед коммитом ещё раз обновиться, разрешить конфликты, снова прогнать сборку/тесты.</li>
-        <li>Закоммитить в основную ветку.</li>
-        <li>Убедиться, что интеграционная сборка основной ветки прошла; если нет — <strong>сразу исправить или откатить</strong>.</li>
-      </ol>
-
-      <h2>Коротко</h2>
-      <p><strong>CI = частые маленькие интеграции в одну основную ветку + самопроверяемая автоматическая сборка после каждой интеграции + немедленная починка сломанной сборки.</strong></p>
-
-      <h2>Вопросы и ответы</h2>
-      <div class="faq">
-        <details class="card">
-          <summary class="card__title">С чего начинается CI в команде?</summary>
-          <p class="card__text">Не с инструмента, а с договорённости: код в репозитории всегда должен успешно собираться и проходить тесты. Без этого ни CI‑сервер, ни ночные сборки не дадут устойчивого эффекта.</p>
-        </details>
-        <details class="card">
-          <summary class="card__title">Почему «ночные сборки» — это не CI?</summary>
-          <p class="card__text">Потому что сигнал приходит слишком поздно. В CI основная ветка проверяется после каждого коммита (или с минимальной задержкой), чтобы ошибки интеграции находились сразу.</p>
-        </details>
-        <details class="card">
-          <summary class="card__title">Как часто стоит интегрироваться?</summary>
-          <p class="card__text">Ориентир — минимум ежедневно, на практике часто несколько раз в день небольшими порциями изменений.</p>
-        </details>
-        <details class="card">
-          <summary class="card__title">Чем «CI‑сервер на feature‑ветках» отличается от CI?</summary>
-          <p class="card__text">В CI команда регулярно интегрируется в общую mainline и держит её зелёной. Если проверки крутятся в изоляции на feature‑ветках, а интеграция в mainline происходит редко, то ошибки интеграции всё равно копятся и проявляются поздно — это часто называют «CI‑театром».</p>
-        </details>
-        <details class="card">
-          <summary class="card__title">Что делать, если commit build стал дольше 10 минут?</summary>
-          <p class="card__text">Обратная связь становится слишком медленной для частых интеграций. Типичные меры: параллелизация тестов, отделение долгих проверок в отдельные стадии конвейера, кеширование зависимостей/артефактов, пересмотр объёма проверок именно в commit build.</p>
-        </details>
-        <details class="card">
-          <summary class="card__title">Как делать большие изменения без долгоживущих веток?</summary>
-          <p class="card__text">Чаще всего помогает комбинация feature flags (сливать код, не включая функциональность) и branch by abstraction (вводить новый слой/интерфейс и постепенно переводить вызовы). Это позволяет продолжать часто интегрироваться в mainline.</p>
-        </details>
-      </div>
     </div>
   </main>
 
@@ -210,13 +87,15 @@
         <ul>
           <li><a href="index.html">Главная</a></li>
           <li><a href="docs/continuous-integration.html">Полный материал</a></li>
-          <li><a href="#benefits">Преимущества</a></li>
+          <li><a href="#korotko">Коротко</a></li>
+          <li><a href="#cikl">Ежедневный цикл</a></li>
+          <li><a href="#dogovor">Договоренность</a></li>
+          <li><a href="#benefits">Почему важно</a></li>
         </ul>
       </div>
       <div>
         <h3>Материалы</h3>
         <ul>
-          <li><a href="#istochniki">Источники и ссылки</a></li>
           <li><a href="docs/continuous-integration.html">Оглавление статьи</a></li>
         </ul>
       </div>
